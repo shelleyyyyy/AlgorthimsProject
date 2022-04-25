@@ -10,7 +10,6 @@ public class Box {
         
     }
     
-
     public int getCapacity() {
         return capacity;
     }
@@ -32,6 +31,8 @@ public class Box {
 
         currentWeight = tmp;
         contained[lastItem] = item;
+        lastItem ++;
+        capacity =- currentWeight;
         return true;
     }
 
