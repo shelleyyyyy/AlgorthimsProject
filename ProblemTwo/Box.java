@@ -1,40 +1,44 @@
 package ProblemTwo;
 
+import ProblemTwo.Items;
+
 public class Box {
-    private int capacity = 1;
-    private int currentWeight = 0;
-    private int [] contained = new int[10];
+    private double capacity;
+    private double currentWeight = 0;
+    private Items[] contained = new Items[10];
     private int lastItem = 0;
 
     public Box() {
-        
+        this.capacity = 1;
     }
-    
-    public int getCapacity() {
+
+    public Box(double capacity) {
+        this.capacity = capacity;
+    }
+
+    public double getCapacity() {
         return capacity;
     }
 
-    public int getCurrentWeight() {
+    public double getCurrentWeight() {
         return currentWeight;
     }
 
-    public void setCurrentWeight(int newWeight) {
-        currentWeight = currentWeight + newWeight;
-    }
+    // public void setCurrentWeight(int newWeight) {
+    // currentWeight = currentWeight + newWeight;
+    // }
 
-    public boolean addItem(int item) {
-        int tmp = currentWeight + item;
+    public boolean addItem(Items item) {
+        double tmp = currentWeight + item.getWeight();
 
-        if(tmp > 1){
+        if (tmp > 1) {
             return false;
         }
 
         currentWeight = tmp;
         contained[lastItem] = item;
-        lastItem ++;
-        capacity =- currentWeight;
+        lastItem++;
+        capacity = capacity - currentWeight;
         return true;
     }
-
-
 }

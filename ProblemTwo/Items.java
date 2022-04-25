@@ -2,17 +2,31 @@ package ProblemTwo;
 
 public class Items {
 
-    private int weight;
+    private double weight;
     private int id;
 
-    public int getWeight() {
+    public Items() {
+
+    }
+
+    public Items(double weight, int id) {
+        this.weight = weight;
+        this.id = id;
+    }
+
+    public double getWeight() {
         return weight;
     }
 
-    public int setWeight(int newWeight) {
+    public void setWeight(double newWeight) {
         weight = newWeight;
     }
 
-    
-    
+    public int getID() {
+        return id;
+    }
+
+    public void setID(int newID) {
+        id = newID;
+    }
 }
