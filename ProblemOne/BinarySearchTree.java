@@ -11,13 +11,13 @@ public class BinarySearchTree<AnyType extends Comparable<AnyType>> {
         BinaryNode<AnyType> left;
         BinaryNode<AnyType> right;
 
-        BinaryNode(AnyType element) {
-            HashMap<AnyType, Integer> map = new HashMap<>();
-            this.map = map.put(element, 0);
-            this.element = element;
-            this.left = null;
-            this.right = null;
-        }
+        // BinaryNode(AnyType element) {
+        //     HashMap<AnyType, Integer> map = new HashMap<>();
+        //     this.map = map.put(element, 0);
+        //     this.element = element;
+        //     this.left = null;
+        //     this.right = null;
+        // }
 
         BinaryNode(AnyType element, BinaryNode<AnyType> left, BinaryNode<AnyType> right) {
             this.map.put(element, 0);
@@ -133,14 +133,14 @@ public class BinarySearchTree<AnyType extends Comparable<AnyType>> {
 
     private Integer count(AnyType x, BinaryNode<AnyType> t) {
         if (t == null)
-            return false;
+            return 0;
 
         int compareResult = x.compareTo(t.element);
 
         if (compareResult < 0)
-            return contains(x, t.left);
+            return count(x, t.left);
         else if (compareResult > 0)
-            return contains(x, t.right);
+            return count(x, t.right);
         else
             return t.map.get(x);
     }
