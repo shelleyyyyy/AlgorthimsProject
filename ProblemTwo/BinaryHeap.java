@@ -29,6 +29,10 @@ public class BinaryHeap<AnyType> {
         buildHeap();
     }
 
+    public int getCurrentSize() {
+        return currentSize;
+    }
+
     public boolean isEmpty() {
         return currentSize == 0;
     }

@@ -29,16 +29,17 @@ public class Box {
     // }
 
     public boolean addItem(Items item) {
-        double tmp = currentWeight + item.getWeight();
+        double tmp = capacity - item.getWeight();
 
-        if (tmp > 1) {
+        if (tmp < 0) {
+            System.out.println(tmp);
             return false;
+        } else {
+            capacity = tmp;
+            currentWeight = item.getWeight();
+            contained[lastItem] = item;
+            lastItem++;
+            return true;
         }
-
-        currentWeight = tmp;
-        contained[lastItem] = item;
-        lastItem++;
-        capacity = capacity - currentWeight;
-        return true;
     }
 }

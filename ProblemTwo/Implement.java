@@ -22,7 +22,35 @@ public class Implement {
             queue.insert(min);
             queue.printHeap();
         }
+    }
 
+    public static void insertItems(Items[] items, BinaryHeap bh){
+        for(int i = 0; i < items.length; i++) {
+            Box[] removed = new Box[bh.getCurrentSize()];
+            for(int j = 0; j <= bh.getCurrentSize(); j++){
+
+                Box box = bh.deleteMin();
+                System.out.println("removed box: " + j);
+                System.out.println(items[i].getWeight());
+                System.out.println(box.getCapacity());
+                Boolean bool = box.addItem(items[i]);
+                removed[j] = box;
+
+                if(bool){
+                    System.out.println("fits");
+                    break;
+                }
+
+                System.out.println("does not fit");
+            }
+
+            for(int j = 0; j < removed.length; j++){
+                if(removed[j] == null){
+                    break;
+                }
+                bh.insert(removed[j]);
+            }
+        }
     }
 
     public void print(BinaryHeap queue) {
@@ -33,17 +61,21 @@ public class Implement {
 
         Box b1 = new Box();
         Box b2 = new Box();
-        Box b3 = new Box(.6);
-        Box b4 = new Box(.6);
-        Box b5 = new Box(.2);
+
+        Items i1 = new Items(.6, 1);
+        Items i2 = new Items(.6, 1);
+        Items i3 = new Items(.4, 1);
+        Items i4 = new Items(.4, 1);
+        
+        Items[] items = {i1, i2, i3, i4};
 
         Box[] boxes = { b1, b2 };
-        double[] weights = { .4, .4, .6, .6 };
 
         BinaryHeap boxHeapPriorityQueue = new BinaryHeap<>(boxes);
-        Implement test = new Implement();
-        test.inOrder(weights, boxHeapPriorityQueue);
-        // test.print(boxHeapPriorityQueue);
+        
+        insertItems(items, boxHeapPriorityQueue);
 
+        boxHeapPriorityQueue.printHeap();
+    
     }
 }
