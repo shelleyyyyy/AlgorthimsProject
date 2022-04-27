@@ -7,24 +7,6 @@ package ProblemTwo;
 
 public class Implement {
 
-    // public void inOrder(double[] weights, BinaryHeap queue) {
-    //     Items[] array = new Items[weights.length];
-    //     for (int i = 0; i < array.length; i++) {
-    //         array[i] = new Items(weights[i], i);
-    //     }
-
-    //     for (int i = 0; i < 2; i++) {
-    //         Box min = queue.deleteMin();
-    //         System.out.println("before add " + min.getCapacity());
-    //         System.out.println("before add array[i] " + array[i].getWeight());
-
-    //         min.addItem(array[i]);
-    //         System.out.println("after add " + min.getCapacity());
-    //         queue.insert(min);
-    //         queue.printHeap();
-    //     }
-    // }
-
     public static void inOrder(Items[] items, BinaryHeap bh){
 
         if(bh.getCurrentSize() <= 0){
