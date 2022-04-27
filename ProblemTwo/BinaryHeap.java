@@ -13,7 +13,6 @@ public class BinaryHeap<AnyType> {
     }
 
     public BinaryHeap(int capacity) {
-
         currentSize = 0;
         array = new Box[capacity + 1];
     }
