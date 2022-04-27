@@ -112,7 +112,7 @@ public class BinaryHeap<AnyType> {
     }
 
     public void printHeap() {
-        for (int i = 1; i < array.length; i++) {
+        for (int i = 1; i <= currentSize; i++) {
             if (array[i] != null)
                 System.out.print(array[i].getCapacity() + " ");
         }

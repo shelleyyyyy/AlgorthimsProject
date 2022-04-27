@@ -26,11 +26,18 @@ public class Implement {
     // }
 
     public static void inOrder(Items[] items, BinaryHeap bh){
+
+        if(bh.getCurrentSize() <= 0){
+            insertNewBox(1, bh);
+        }
+
         for(int i = 0; i < items.length; i++) {
-            Box[] removed = new Box[bh.getCurrentSize()];
-            for(int j = 0; j <= bh.getCurrentSize(); j++){
+            Box[] removed = new Box[bh.getCurrentSize() + 1];
+            int run = bh.getCurrentSize();
+            for(int j = 0; j <= run; j++){
 
                 Box box = bh.deleteMin();
+
                 System.out.println("removed box: " + j);
                 System.out.println(items[i].getWeight());
                 System.out.println(box.getCapacity());
@@ -43,6 +50,11 @@ public class Implement {
                 }
 
                 System.out.println("does not fit");
+
+                if(bh.getCurrentSize() <= 0){
+                    insertNewBox(1, bh);
+                    run++;
+                }
             }
 
             for(int j = 0; j < removed.length; j++){
@@ -52,6 +64,9 @@ public class Implement {
                 bh.insert(removed[j]);
             }
         }
+
+        System.out.println("************FINAL**************");
+        bh.printHeap();
     }
 
     public static void orderItems(Items[] items){
@@ -62,10 +77,15 @@ public class Implement {
         queue.printHeap();
     }
 
+    public static void insertNewBox(double capacity, BinaryHeap bh){
+        Box newBox = new Box(capacity);
+        bh.insert(newBox);
+    }
+
     public static void main(String[] args) {
 
-        Box b1 = new Box();
-        Box b2 = new Box();
+        // Box b1 = new Box();
+        // Box b2 = new Box();
 
         Items i1 = new Items(.4, 1);
         Items i2 = new Items(.4, 1);
@@ -74,9 +94,9 @@ public class Implement {
         
         Items[] items = {i1, i2, i3, i4};
 
-        Box[] boxes = { b1, b2 };
+        // Box[] boxes = { b1, b2 };
 
-        BinaryHeap boxHeapPriorityQueue = new BinaryHeap<>(boxes);
+        BinaryHeap boxHeapPriorityQueue = new BinaryHeap<>();
         MaxBinaryHeap mbh = new MaxBinaryHeap<>(items);
 
         // inOrder(items, boxHeapPriorityQueue);
@@ -92,5 +112,9 @@ public class Implement {
 
         inOrder(orderd, boxHeapPriorityQueue);
         boxHeapPriorityQueue.printHeap();
+
+
+
+        
     }
 }
