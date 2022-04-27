@@ -84,9 +84,6 @@ public class Implement {
 
     public static void main(String[] args) {
 
-        // Box b1 = new Box();
-        // Box b2 = new Box();
-
         Items i1 = new Items(.4, 1);
         Items i2 = new Items(.4, 1);
         Items i3 = new Items(.6, 1);
@@ -94,16 +91,12 @@ public class Implement {
         
         Items[] items = {i1, i2, i3, i4};
 
-        // Box[] boxes = { b1, b2 };
-
         BinaryHeap boxHeapPriorityQueue = new BinaryHeap<>();
         MaxBinaryHeap mbh = new MaxBinaryHeap<>(items);
 
         // inOrder(items, boxHeapPriorityQueue);
-        boxHeapPriorityQueue.printHeap();
     
         // make sorted items
-
         Items[] orderd = new Items[mbh.getCurrentSize()];
 
         for(int i = 0; i < orderd.length; i++){
@@ -112,9 +105,7 @@ public class Implement {
 
         inOrder(orderd, boxHeapPriorityQueue);
         boxHeapPriorityQueue.printHeap();
+        System.out.println("Stored items with " + boxHeapPriorityQueue.getCurrentSize() + " boxes");
 
-
-
-        
     }
 }
