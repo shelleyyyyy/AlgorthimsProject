@@ -99,6 +99,11 @@ public class Implement<AnyType> {
 
         // Part 1 - Scan items in order given
         System.out.println("*********** Part 1 *************");
+        System.out.println("Items");
+        for (int i = 0; i < items.length; i++) {
+            System.out.print(items[i].getWeight() + " ");
+        }
+        System.out.println();
         BinaryHeap boxHeapPriorityQueue = new BinaryHeap<>();
         inOrder(items, boxHeapPriorityQueue);
         System.out.println("Stored items with " + boxHeapPriorityQueue.getCurrentSize() + " boxes");
