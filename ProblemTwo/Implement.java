@@ -64,7 +64,6 @@ public class Implement<AnyType> {
             box.addItem(items[i]);
             bh.insert(box);
         }
-
     }
 
     public static void orderItems(Items[] items) {
