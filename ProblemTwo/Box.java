@@ -32,7 +32,7 @@ public class Box {
         double tmp = capacity - item.getWeight();
 
         if (tmp < 0) {
-            System.out.println(tmp);
+
             return false;
         } else {
             capacity = tmp;

@@ -1,28 +1,28 @@
 package ProblemTwo;
 
-import ProblemTwo.Box;
+import ProblemTwo.Items;
 
-public class MaxBinaryHeap<AnyType> {
+public class ItemsBinaryHeap<AnyType> {
 
     private static final int DEFAULT_CAPACITY = 10;
     private int currentSize;
-    private Box[] array;
+    private Items[] array;
 
-    public MaxBinaryHeap() {
+    public ItemsBinaryHeap() {
         this(DEFAULT_CAPACITY);
     }
 
-    public MaxBinaryHeap(int capacity) {
+    public ItemsBinaryHeap(int capacity) {
         currentSize = 0;
-        array = new Box[capacity + 1];
+        array = new Items[capacity + 1];
     }
 
-    public MaxBinaryHeap(Box[] Boxes) {
-        currentSize = Boxes.length;
-        array = new Box[currentSize + 1];
+    public ItemsBinaryHeap(Items[] Itemses) {
+        currentSize = Itemses.length;
+        array = new Items[currentSize + 1];
         int i = 1;
-        for (Box Box : Boxes) {
-            array[i++] = Box;
+        for (Items Items : Itemses) {
+            array[i++] = Items;
         }
 
         buildHeap();
@@ -40,28 +40,28 @@ public class MaxBinaryHeap<AnyType> {
         currentSize = 0;
     }
 
-    public void insert(Box x) {
+    public void insert(Items x) {
 
         if (currentSize == array.length - 1)
             enlargeArray(array.length * 2 + 1);
 
         // percolate up
         int hole = ++currentSize;
-        for (array[0] = x; x.getCapacity() > array[hole / 2].getCapacity(); hole /= 2) {
+        for (array[0] = x; x.getWeight() > array[hole / 2].getWeight(); hole /= 2) {
             array[hole] = array[hole / 2];
         }
         array[hole] = x;
     }
 
     private void enlargeArray(int newSize) {
-        Box[] old = array;
-        array = new Box[newSize + 1];
+        Items[] old = array;
+        array = new Items[newSize + 1];
         for (int i = 0; i < old.length; i++) {
             array[i] = old[i];
         }
     }
 
-    public Box findMin() {
+    public Items findMin() {
         if (isEmpty()) {
             return null;
         }
@@ -69,9 +69,9 @@ public class MaxBinaryHeap<AnyType> {
         return array[1];
     }
 
-    public Box deleteMax() {
+    public Items deleteMax() {
 
-        Box minItem = findMin();
+        Items minItem = findMin();
 
         if (minItem == null) {
             return null;
@@ -85,16 +85,16 @@ public class MaxBinaryHeap<AnyType> {
 
     public void percolateDown(int hole) {
         int child = 0;
-        Box tmp = array[hole];
+        Items tmp = array[hole];
 
         for (; hole * 2 <= currentSize; hole = child) {
             child = hole * 2;
 
             // if child + 1 is smaller than child then update child to child + 1
-            if (child != currentSize && array[child + 1].getCapacity() > array[child].getCapacity()) {
+            if (child != currentSize && array[child + 1].getWeight() > array[child].getWeight()) {
                 child++;
             }
-            if (array[child].getCapacity() > tmp.getCapacity()) {
+            if (array[child].getWeight() > tmp.getWeight()) {
                 array[hole] = array[child];
             } else {
                 break;
@@ -111,21 +111,21 @@ public class MaxBinaryHeap<AnyType> {
 
     public void showHeap() {
         for (int i = 1; i <= currentSize; i++) {
-            System.out.print(array[i].getCapacity() + ", ");
+            System.out.print(array[i].getWeight() + ", ");
         }
         System.out.println();
     }
 
     // public static void main(String[] args) {
 
-    // Box i1 = new Box(.1, 1);
-    // Box i2 = new Box(.2, 2);
-    // Box i3 = new Box(.3, 3);
-    // Box i4 = new Box(.4, 4);
+    // Items i1 = new Items(.1, 1);
+    // Items i2 = new Items(.2, 2);
+    // Items i3 = new Items(.3, 3);
+    // Items i4 = new Items(.4, 4);
 
-    // Box[] Box = {i1, i2, i3, i4};
+    // Items[] items = {i1, i2, i3, i4};
 
-    // MaxBinaryHeap mbh = new MaxBinaryHeap(Box);
+    // MaxBinaryHeap mbh = new MaxBinaryHeap(items);
 
     // mbh.showHeap();
 
